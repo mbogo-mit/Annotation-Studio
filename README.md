@@ -13,19 +13,20 @@ annotations.
 # Getting Started
 
 ## Things to install
-Annotation Studio uses PostgreSQL
+Annotation Studio uses PostgreSQL and Ruby
 
-The MIT Annotation Data Store requires Node.js (0.10.21), NPM (1.3.11) and
-MongoDB
+The MIT Annotation Data Store requires Node.js, NPM and MongoDB
 
 ## General Installation
-Set up Rails (if you haven't yet, try: [thoughtbot's Laptop repo]
-(https://github.com/thoughtbot/laptop))
+Use rbenv or rvm to install and run the Ruby version specified in `.ruby-version`.
 
-- ```git clone git@github.com:hyperstudio/Annotation-Studio.git
-annotation-studio```
-- ```cd annotation-studio```
-- ```./bin/setup```
+(optional additional software: [thoughtbot's Laptop repo](https://github.com/thoughtbot/laptop))
+
+```
+git clone https://github.com/hyperstudio/Annotation-Studio.git
+cd Annotation-Studio
+./bin/setup
+```
 
 which will:
 
@@ -87,7 +88,9 @@ awesome and supporting the Annotator Community
 plugins and being awesome.
 
 ## Contributors
-### Lab
+### Institutions
+- Active Archives Initiative at MIT
+- http://aai.mit.edu
 - MIT HyperStudio
 - http://hyperstudio.mit.edu/
 
@@ -99,6 +102,10 @@ plugins and being awesome.
 - Seth Woodworth [@sethwoodworth](http://github.com/sethwoodworth)
 - Ayse Gursoy [@gursoy](http://github.com/gursoy)
 - Jacob Hilker [@jhilker](http://github.com/jhilker)
+- Ben Silverman [@blms](http://github.com/blms)
+- Peggy Wang [@pegolegoeggo](http://github.com/pegolegoeggo)
+- Lizao Wang [@LizaoWang](http://github.com/LizaoWang)
+- Joshua Mbogo [@mbogo-mit](http://github.com/mbogo-mit)
 
 ## License
 GPL2: http://www.gnu.org/licenses/gpl-2.0.html

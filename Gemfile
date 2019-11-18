@@ -10,7 +10,7 @@ gem 'pg'
 
 gem 'scout_apm'
 
-gem 'devise', '4.0.0'
+gem 'devise', '4.7.1'
 gem "switch_user"
 gem 'cancancan', '~> 1.10'
 gem 'repertoire-groups', '0.0.1', :path => 'vendor/repertoire-groups-0.0.1'
@@ -19,6 +19,7 @@ gem "friendly_id"
 gem "babosa"
 gem 'high_voltage', '3.1.0'
 gem "aws-sdk", '< 2.0'
+gem "aws-sdk-s3"
 gem "paperclip"
 gem "delayed_job_active_record", '4.1.3'
 gem 'pdf-reader'
@@ -79,7 +80,7 @@ gem 'jbuilder', '2.7.0'
 gem "jwt"
 gem "rabl"
 gem "gon", '6.2.0'
-gem "nokogiri", '1.6.8'
+gem "nokogiri", '1.9.1'
 
 gem 'tilt', '1.1'
 gem 'sass-rails', '5.0.7'
