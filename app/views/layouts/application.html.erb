@@ -89,19 +89,6 @@
     <script type="text/javascript">
       var _documentTitle = "";
     $('document').ready(function() {
-      // $('#lower-navbar').affix({
-      //   offset: {top: 50}
-      // });
-      // $('#mainmenu').offcanvas({
-      //   disableScrolling: false,
-      //   autohide: true,
-      // });
-      // $('#toolsmenu').offcanvas({
-      //   disableScrolling: false,
-      //   autohide: true,
-      // });
-      // $('#mainmenu').offcanvas();
-      // $('#toolsmenu').offcanvas();
 
       /*
       This piece of code is applied to _breadcrumbs.html.erb to
@@ -117,7 +104,7 @@
         the text fits inside the container and has a ... to represent
         that there is more text that can be displayed if the user
         hovers over the document title.
-        Returns: the new text with a "..." at the end
+        Returns: the new text with a  at the end
         */
 
         /*
@@ -152,6 +139,144 @@
         }
       }*/
 
+
+      //This block of code is for the custom scroll bar created
+      var _scrollbarTrackMarginTop = 0;
+      var _mousedown = false;
+      var _previousPageYValue = 0;//for scrollbar
+      function ScrollBarSize(trueViewHeight){
+        //figures out the appropriate height and width of scroll bar and scale factors for scrolling
+        var container = null;
+        var scrollingFactor = 0
+        $(".container").each(function(index){
+          if(index == 2){
+            container = $(this);
+          }
+        });
+        //ratio * Scrollbar Track Height = Height of Scrollbar
+        var heightOfScrollbar = (trueViewHeight / container.height()) * $("#my-scrollbar-div-container").height();
+        console.log(container.height());
+        $("#my-scrollbar").height(heightOfScrollbar);//setting the height
+        //setting the width = width of the track
+        $("#my-scrollbar").width($("#my-scrollbar-div-container").width());
+        SetScrollingFunctionality();
+      }
+
+      function ScrollbarTrackSize(){
+        //figures out the appropriate size for the scrollbar track
+        var marginFactor = 0.02
+        var trueViewHeight = $(window).height() - $("#navbar").height() - $("#lower-navbar").height();
+        var scrollbarTrackMarginTop = trueViewHeight * marginFactor;
+        _scrollbarTrackMarginTop = scrollbarTrackMarginTop;
+        var sdt = $("#my-scrollbar-div-container");//scrollbar div track
+        //setting the top position
+        sdt.css("top", scrollbarTrackMarginTop + "px");
+        //setting the left position
+        sdt.css("left", ($(window).width() - sdt.width() - sdt.parent().position().left) - 5 + "px");
+        //setting the length of the scroll bar div track
+        sdt.height(trueViewHeight * (0.9 - (2 * marginFactor)));
+        $("#fixed-scrollbar-container").css("left", ($(window).width() - sdt.width() - sdt.parent().position().left) + "px");
+        $("#fixed-scrollbar-container").height(trueViewHeight * 0.9);
+        ScrollBarSize(trueViewHeight);
+      }
+
+      function SetScrollingFunctionality(){
+        //sets how the scrolling events and scrolling ratios will work for this scrollbar
+        /*$("#my-scrollbar-div-container").mouseenter(function() {
+          console.log("hi");
+          $(this).animate({
+            opacity: 1.0
+          }, 500);
+          $("#my-scrollbar").animate({
+            opacity: 1.0
+          }, 250);
+        });
+
+        $("#my-scrollbar-div-container").mouseout(function() {
+          console.log("bye");
+          $(this).animate({
+            opacity: 0.0
+          }, 250);
+          $("#my-scrollbar").animate({
+            opacity: 0.0
+          }, 250);
+        });
+        */
+
+        $("#my-scrollbar").mousedown(function() {
+            _mousedown = true;
+        });
+        $(document).mouseup(function(){
+            _mousedown = false;
+            _previousPageYValue = 0;
+        });
+
+        $(document).mousemove(function(event){
+            if(_mousedown){
+              if(window.event.stopPropagation){ window.event.stopPropagation();}
+              if(window.event.preventDefault){ window.event.preventDefault();}
+              window.event.cancelBubble=true;
+              window.event.returnValue=false;
+              if(_previousPageYValue == 0){
+                _previousPageYValue = event.clientY;
+              }
+              else{
+                //make sure the user can't over scroll
+                if($("#my-scrollbar").position().top <= ($("#my-scrollbar-div-container").height() - $("#my-scrollbar").height())
+                  && $("#my-scrollbar").position().top >= 0){
+                  $("#my-scrollbar").css("top", $("#my-scrollbar").position().top + (event.clientY - _previousPageYValue) + "px");
+                }
+                else{
+                  if($("#my-scrollbar").position().top < 0){
+                    $("#my-scrollbar").css("top", "0px");
+                  }
+                  else{
+                    $("#my-scrollbar").css("top", ($("#my-scrollbar-div-container").height() - $("#my-scrollbar").height()));
+                  }
+                }
+                _previousPageYValue = event.clientY;
+              }
+              $("body").scrollTop(($("#my-scrollbar").position().top / ($("#my-scrollbar-div-container").height() - $("#my-scrollbar").height())) * ($("body").innerHeight() - $(window).innerHeight()));
+
+              console.log(($("#my-scrollbar").position().top / ($("#my-scrollbar-div-container").height() - $("#my-scrollbar").height())) * ($("body").innerHeight() - $(window).innerHeight()));
+            }
+        });
+
+        //checking if the page is being scrolled and adjusting scroll bar so it doesnt move
+        $(document).scroll(function(){
+          //$("#my-scrollbar-div-container").css("top", (_scrollbarTrackMarginTop + $(this).scrollTop()) + "px");
+          var percentage = ($("body").scrollTop()) / ($("body").innerHeight() - $(window).innerHeight());
+          console.log((($("#my-scrollbar-div-container").height() - $("#my-scrollbar").height()) * percentage) + "px");
+          $("#my-scrollbar").css("top", (($("#my-scrollbar-div-container").height() - $("#my-scrollbar").height()) * percentage) + "px");
+
+          console.log("hi");
+          $("#my-scrollbar-div-container").animate({
+            opacity: 1.0
+          }, 250);
+          $("#my-scrollbar").animate({
+            opacity: 1.0
+          }, 250);
+
+        });
+
+        //showing scrollbar once all functionalities are up and running
+        $("#my-scrollbar-div-container").animate({
+          opacity: 1.0
+        }, 250);
+        $("#my-scrollbar").animate({
+          opacity: 1.0
+        }, 250);
+
+      }
+
+
+      setTimeout(ScrollbarTrackSize, 1000);
+
+
+    });
+
+    $(document).load(function(){
+      console.log("heyhey");
     });
     </script>
 </body>

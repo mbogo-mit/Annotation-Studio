@@ -3,6 +3,12 @@
 <%= content_for :page_title, 'Dashboard' %>
 <%= stylesheet_link_tag "users" %>
 <%= render "/shared/document_titles" %>
+<div id="fixed-scrollbar-container" style="position:fixed;width:200px;height:40px;background:grey;opacity:0;"></div>
+<div style="position:fixed;">
+  <div id="my-scrollbar-div-container">
+    <div id="my-scrollbar"></div>
+  </div>
+</div>
 <div id="users" class="row">
   <div class="col-md-6">
     <div class="panel panel-default" id="dashboard-documents">

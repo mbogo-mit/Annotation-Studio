@@ -228,7 +228,7 @@ img#neh-logo {
   margin:0px;
 }
 
-/*
+
 ::-webkit-scrollbar {
     width: 1em;
 }
@@ -238,18 +238,50 @@ img#neh-logo {
 }
 ::-webkit-scrollbar-thumb {
   background-color: darkgrey;
-  outline: 1px solid slategrey;
+  //outline: 1px solid slategrey;
 }
-*/
+
 
 ::-webkit-scrollbar {
     // Width of vertical scroll bar
-    width: 8px;
+    width: 0px;
     // Height of horizontal scroll bar
     height: 10px;
+    margin-left:-8px;
 
   }
   ::-webkit-scrollbar-thumb {
     border-radius: 8px;
     background: #c2c9d2;
   }
+
+  #my-scrollbar-div-container {
+    position: absolute;
+    top:0px;
+    left:100%;
+    width:8px;
+    height:100px;
+    opacity: 0.0;
+    background-color: #d1d1e0;
+    border-radius:3px;
+  }
+
+  #my-scrollbar {
+    position: absolute;
+    opacity: 0.0;
+    background-color: grey;
+    border-radius:3px;
+    top: 0px;
+  }
+/*
+  ::selection{
+    color: none;
+    background: none;
+  }
+*/
+  /* For Mozilla Firefox */
+  /*
+  ::-moz-selection {
+      color: none;
+      background: none;
+  }*/

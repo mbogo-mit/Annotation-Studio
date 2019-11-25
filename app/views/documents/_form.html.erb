@@ -158,7 +158,7 @@
       // create button
       var button = ui.button({
         contents: '<i class="fa fa-bars"/> Add Chapter',
-        tooltip: 'Add chapters to bookmark places in the text',
+        tooltip: 'Bookmark places in the text',
         click: function () {
           // invoke insertText method with 'hello' on editor module.
           context.invoke('editor.pasteHTML', "|<span style='font-style: italic;' id='chapter-bookmark-" + chapterNumbers + "' class='chapter-bookmark bg-success '>Name The Chapter</span>|");
@@ -181,13 +181,13 @@
       toolbar: [
         // [groupName, [list of button]]
         ['mybuttons',['chapterbutton']],
-        ['style', ['bold', 'italic', 'underline', 'clear']],
-        ['font', ['strikethrough', 'superscript', 'subscript']],
-        ['fontsize', ['fontsize']],
-        ['color', ['color']],
-        ['link',['link','chapterbookmark']],
+        ['cleaner',['cleaner']],
+        ['style',['style']],
+        ['text-style', ['bold', 'underline', 'italic', 'clear',]],
+        ['font', ['fontname','fontsize','color']],
         ['para', ['ul', 'ol', 'paragraph']],
-        ['height', ['height','cleaner']]
+        ['insert',['table','link','picture','video']],
+        ['etc',['fullscreen','codeview','help']]
       ],
       buttons: {
         chapterbutton: ChapterButton
@@ -228,11 +228,16 @@
           limitStop: false, // true/false
           icon: '<i class="note-icon"><span class="fa fa-compress"></span></i>'          }
         });
+
+      //we are not using this system for chapters anymore
+      /*
       $('#chapter-editor').hide();
       $('#chapter-label').click(function(){
         $("[data-event='codeview']").click()
         $('#chapter-editor').toggle();
       });
+
+      */
 
       // handle catalog texts
 
